@@ -1,9 +1,3 @@
-/* A convenience function to reverse a string, and 
- * one to set the content of an element.
- */
- 
-function reverse(s){return s.split('').reverse().join('')}
- 
 function set(el,text){
  while(el.firstChild)el.removeChild(el.firstChild);
  el.appendChild(document.createTextNode(text))
@@ -11,10 +5,11 @@ function set(el,text){
  
 var sayings = [
 	"I am in control over what I am doing. I am not distracted",
-	"I am as aware of my tongue as much as I am aware of how distracted the site I am going to can make me",
 	"I have done all my goals today and am focused",
+	"I can totally type to 10 and still choose not to go to an alternative site. 1 2 3 4 5 6 7 8 9 10.",
 	"I am not habitually going to this site after creating a new tab. I have good reasons for going to this site",
-	"I can always go to this site later in the day and there is no urgency to visit this site, but I am going anyways"
+	"There are so many better things to do.  I'll still go through typing this to experience this banal web site.",
+	"I can always go to this site later in the day and there is no urgency to visit this site, but I am going anyways despite what's best for me"
 	]
 /* setupUpdater will be called once, on page load.
  */
@@ -29,8 +24,10 @@ window.onload = function setupUpdater(){
    , oldText=input
    , timeout=null;
 
- set(target, targetText);	
-/* handleChange is called 50ms after the user stops 
+	set(target, targetText);	
+
+
+/* handleChange is called 200ms after the user stops 
    typing. */
  function handleChange(){
   var newText=input.value;
@@ -44,24 +41,23 @@ window.onload = function setupUpdater(){
   set(orig, 'Debug: Score:' + score);
  }
  
-/* eventHandler is called on keyboard and mouse events.
-   If there is a pending timeout, it cancels it.
-   It sets a timeout to call handleChange in 50ms. */
  function eventHandler(){
   if(timeout) clearTimeout(timeout);
-  timeout=setTimeout(handleChange, 200);
+  timeout=setTimeout(handleChange, 130);
  }
  input.onkeydown=input.onkeyup=onClick=eventHandler;
 };
 
 //Button Listener function
 $(function(){
-	$(".btn").click(function(){
+	$(".btn-primary").click(function(){
 		if (passed){
-			$("strong").text("Debug: YOU PASSED");
+			$(".btn-success").removeAttr("disabled");	
+			console.log(chrome.extension.getBackgroundPage());
+			$(".btn-success").attr("href", chrome.extension.getBackgroundPage().prevSite);
 		}
 		else 
-			$("strong").text("Debug: YOU FAILED");
+			$("strong").text("You failed! (typos are allowed)");
 	});
 });
 

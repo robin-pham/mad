@@ -4,7 +4,7 @@
   "description": "This addon will help you be less distracted",
   "version": "1.0",
   "background": {
-		"scripts": ["background.js"],
+		"scripts": ["js/checkerino.js","background.js"],
 		"pages": ["background.html"]
 	},
 
