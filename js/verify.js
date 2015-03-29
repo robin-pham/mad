@@ -34,11 +34,8 @@ window.onload = function setupUpdater(){
 	var score = a.get(newText)[0][0];
   if (score>0.91) {
 		passed = true;
-		set(orig, "YOU WON");
 		return;
 	}
-  set(count, 'Debug: You entered '+newText.length+' characters.');
-  set(orig, 'Debug: Score:' + score);
  }
  
  function eventHandler(){
@@ -48,10 +45,11 @@ window.onload = function setupUpdater(){
  input.onkeydown=input.onkeyup=onClick=eventHandler;
 };
 
-//Button Listener function
+//Button Listener function yeah yeah its jquery and the rest of this wasnt, I am learning!
 $(function(){
 	$(".btn-primary").click(function(){
 		if (passed){
+			$("strong").text("I hope you don't regret this");
 			$(".btn-success").removeAttr("disabled");	
 			console.log(chrome.extension.getBackgroundPage());
 			$(".btn-success").attr("href", chrome.extension.getBackgroundPage().prevSite);
