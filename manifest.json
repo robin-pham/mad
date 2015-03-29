@@ -2,14 +2,14 @@
   "manifest_version": 2,
   "name": "MAD - Mindfulness Anti Distraction",
   "description": "This extension will hopefully help you be less distracted (untested)",
-  "version": "1.0",
+  "version": "0.1",
   "background": {
 		"scripts": ["js/checkerino.js","background.js"],
 		"pages": ["background.html"]
 	},
 
   "browser_action": {
-    "default_icon": "icon.png",
+    "default_icon": "img/128.png",
     "default_title": "MAD"
   },
 
