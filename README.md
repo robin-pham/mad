@@ -1,8 +1,18 @@
-# MAD/CDAD
+#MAD/CDAD
+
 Mindfulness Anti Distraction / Cognitive Dissonance Anti Distraction
 
 Chrome extension to help curtail bad habitual distractions.
 
+#How to run
+<ul>
+<li>Clone/Download zip.
+<li>Go to chrome://extensions
+<li>Check Developer mode in the top right
+<li>Load unpacked extension and select the folder with the manifest.json file
+</ul>
+
+#About
 I have 0 idea if this works in practice. 
 
 Inspirations taken from bits and pieces of psychology studies and my own lazy-ass intuitions. <a href="http://www.amazon.com/Willpower-Rediscovering-Greatest-Human-Strength-ebook/dp/B0052REQCY">Related slightly: Baumeister's work</a>. 
