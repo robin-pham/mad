@@ -17,7 +17,7 @@ var sayings = [
 var passed = false; 
 window.onload = function setupUpdater(){
  var input=document.getElementsByTagName('textarea')[0]
-   , count=document.getElementById('charCount')
+   , count=document.getElementById('percent')
    , target=document.getElementById('target')
 	 , targetText = sayings[Math.floor(Math.random()*sayings.length)]
 	 , a = FuzzySet([targetText])
@@ -34,14 +34,17 @@ window.onload = function setupUpdater(){
   var newText=input.value;
 	var score = a.get(newText)[0][0];
   if (score>0.91) {
+		set(count, "");
 		passed = true;
 		return;
+	} else if (score> 0.1){
+		set(count, "You are " + score*100 + "% accurate (need >91)");
 	}
  }
  
  function eventHandler(){
   if(timeout) clearTimeout(timeout);
-  timeout=setTimeout(handleChange, 130);
+  timeout=setTimeout(handleChange, 50);
  }
  input.onkeydown=input.onkeyup=onClick=eventHandler;
 };
