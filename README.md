@@ -15,7 +15,7 @@ Chrome extension to help curtail bad habitual distractions.
 #About
 I have 0 idea if this works in practice. 
 
-Inspirations taken from bits and pieces of psychology studies and my own lazy-ass intuitions. <a href="http://www.amazon.com/Willpower-Rediscovering-Greatest-Human-Strength-ebook/dp/B0052REQCY">Related slightly: Baumeister's work</a>. 
+Inspirations taken from bits and pieces of psychology studies and my own lazy-ass intuitions. <a href="http://www.amazon.com/Willpower-Rediscovering-Greatest-Human-Strength-ebook/dp/B0052REQCY">Related : Baumeister's work.</a> <a href="https://www.youtube.com/watch?v=HTfYv3IEOqM">Insightful Daniel Golemann Vid</a>
 
 Previously tried using extensions that prevent distractions by fully blocking or restricting site usage (e.g. StayFocusd). Worked in the short term, but I would eventually just remove them out of inconvenience.
 
