@@ -3,14 +3,14 @@ function set(el,text){
  el.appendChild(document.createTextNode(text))
 }
  
-var sayings = [
-	"I am in control over what I am doing. I am not distracted",
-	"I have done all my goals today and am focused",
-	"I am going to type to 10 while deciding whether or not I should really go through with this. 1 2 3 4 5 6 7 8 9 10.",
-	"I am definitely not habitually going to this site. I have good reasons for going to this site",
-	"There are so many better things I should be doing.  I'll still go through typing this. All to access some stupid banal web site.",
-	"I normally don't insult myself, but sometimes drastic measures are necessary. I am a big fat poo poo butt. I am boo boo. My willpower is boo boo. This site is boo boo.",
-	"I can always go to this site later in the day and there is no urgency to visit this site, but I am going anyways despite what's best for me"
+var defSayings = [
+	"I am in control over my actions",
+	"I have done my main goals, and need to use this website",
+	"This site is simply a small tool",
+	"Resisting this site is easy",
+	"I ain't gonna get tricky tricked",
+	"Life's boo boo, but I'll get through too",
+	"Imma take a second and think"
 	]
 /* setupUpdater will be called once, on page load.
  */
@@ -19,7 +19,7 @@ window.onload = function setupUpdater(){
  var input=document.getElementsByTagName('textarea')[0]
    , count=document.getElementById('percent')
    , target=document.getElementById('target')
-	 , targetText = sayings[Math.floor(Math.random()*sayings.length)]
+	 , targetText = defSayings[Math.floor(Math.random()*defSayings.length)]
 	 , a = FuzzySet([targetText])
    , orig=document.getElementById('original')
    , oldText=input
