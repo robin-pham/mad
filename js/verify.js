@@ -6,9 +6,10 @@ function set(el,text){
 var sayings = [
 	"I am in control over what I am doing. I am not distracted",
 	"I have done all my goals today and am focused",
-	"I can totally type to 10 and still choose not to go to an alternative site. 1 2 3 4 5 6 7 8 9 10.",
-	"I am not habitually going to this site after creating a new tab. I have good reasons for going to this site",
-	"There are so many better things to do.  I'll still go through typing this to experience this banal web site.",
+	"I am going to type to 10 while deciding whether or not I should really go through with this. 1 2 3 4 5 6 7 8 9 10.",
+	"I am definitely not habitually going to this site. I have good reasons for going to this site",
+	"There are so many better things I should be doing.  I'll still go through typing this. All to access some stupid banal web site.",
+	"I normally don't insult myself, but sometimes drastic measures are necessary. I am a big fat poo poo butt. I am boo boo. My willpower is boo boo. This site is boo boo.",
 	"I can always go to this site later in the day and there is no urgency to visit this site, but I am going anyways despite what's best for me"
 	]
 /* setupUpdater will be called once, on page load.
