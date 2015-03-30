@@ -5,11 +5,12 @@ function set(el,text){
  
 var defSayings = [
 	"I am in control over my actions",
-	"I have done my main goals, and need to use this website",
-	"This site is simply a small tool",
+	"I have done my main goals for the day, and need to use this website",
+	"Sites are simply tools, they don't control me",
 	"Resisting this site is easy",
-	"I ain't gonna get tricky tricked",
-	"Life's boo boo, but I'll get through too",
+	"I ain't gonna get tricky tricked by my mindless monotony",
+	"This site is boo boo",
+	"I am going here not out of habit, but for a solid purpose",
 	"Imma take a second and think"
 	]
 /* setupUpdater will be called once, on page load.
@@ -28,17 +29,15 @@ window.onload = function setupUpdater(){
 	set(target, targetText);	
 
 
-/* handleChange is called 200ms after the user stops 
-   typing. */
  function handleChange(){
   var newText=input.value;
 	var score = a.get(newText)[0][0];
   if (score>0.91) {
-		set(count, "");
+	//	set(count, "");
 		passed = true;
 		return;
 	} else if (score> 0.1){
-		set(count, "You are " + score*100 + "% accurate (need >91)");
+	//debug	set(count, "You are " + score*100 + "% accurate (need >91)");
 	}
  }
  
@@ -53,7 +52,7 @@ window.onload = function setupUpdater(){
 $(function(){
 	$(".btn-primary").click(function(){
 		if (passed){
-			$("strong").text("I hope you don't regret this");
+			$("strong").text("You've Unlocked The Button...\nI hope you don't regret this");
 			$(".btn-success").removeAttr("disabled");	
 			console.log(chrome.extension.getBackgroundPage());
 			$(".btn-success").attr("href", chrome.extension.getBackgroundPage().prevSite);
