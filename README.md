@@ -26,5 +26,11 @@ The goal is to aid the rewiring of wanting long-term goals (short-term happiness
 Monitoring my process. Started at HackWestern. <br>
 v0.1 29/03/2015
 - Knowledge basis: code academy javascript, stack overflow, github files of other chrome extensions, chrome extension api and docs.
-- Heavily inspired by other anti distraction extensions, e.g. StayFocusd or ColdTurkey. Meant to be an alternative long term method to ween one self from short term reward systems. 
+- Heavily inspired by other anti distraction extensions, e.g. StayFocusd or ColdTurkey.
+- Wanted to manipulate myself into not being distracted, by criticizing and causing cognitive dissonance.
 - Knowledge gained: Negative, or annoyingly long to type guilt messages are draining. Hard to be productive when you're feeling shitty. Going to try to use inspiring, or user-empowering quotes that also make you think, but aren't depressing amongst other additional features in next vers.
+
+v0.1.0.3 30/03/2015
+- Changed UI so the alternatives are upfront, more immediate and relatively bigger. Intuitively that should be the focus, not the typing to unlock/go to the website.
+- Learned a bit more jquery syntax. It's much nicer for manipulating html elements =D.
+- The more positive focused thoughts seem better for now... Blind optimism doesn't seem appropriate here though.
