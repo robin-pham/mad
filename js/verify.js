@@ -9,20 +9,17 @@ var defSayings = [
 	"Sites are simply tools, they don't control me",
 	"Resisting this site is easy",
 	"I ain't gonna get tricky tricked by my mindless monotony",
-	"This site is boo boo",
 	"I am going here not out of habit, but for a solid purpose",
-	"Imma take a second and think"
+	"Taking a second and thinkin-a-linkin"
 	]
 /* setupUpdater will be called once, on page load.
  */
 var passed = false; 
 window.onload = function setupUpdater(){
- var input=document.getElementsByTagName('textarea')[0]
-   , count=document.getElementById('percent')
-   , target=document.getElementById('target')
+ var input=document.getElementsByTagName('input')[0]
+   , count=document.getElementById('message')
 	 , targetText = defSayings[Math.floor(Math.random()*defSayings.length)]
 	 , a = FuzzySet([targetText])
-   , orig=document.getElementById('original')
    , oldText=input
    , timeout=null;
 
@@ -32,12 +29,12 @@ window.onload = function setupUpdater(){
  function handleChange(){
   var newText=input.value;
 	var score = a.get(newText)[0][0];
-  if (score>0.91) {
-	//	set(count, "");
+  if (score>0.88) {
+		//debug set(count, "You are " + score*100 + "% accurate (need >91)");
 		passed = true;
 		return;
 	} else if (score> 0.1){
-	//debug	set(count, "You are " + score*100 + "% accurate (need >91)");
+		//debug set(count, "You are " + score*100 + "% accurate (need >91)");
 	}
  }
  
@@ -52,13 +49,27 @@ window.onload = function setupUpdater(){
 $(function(){
 	$(".btn-primary").click(function(){
 		if (passed){
-			$("strong").text("You've Unlocked The Button...\nI hope you don't regret this");
+			$("#message").text("You've Unlocked The Button...\nI hope you don't regret this");
 			$(".btn-success").removeAttr("disabled");	
 			console.log(chrome.extension.getBackgroundPage());
 			$(".btn-success").attr("href", chrome.extension.getBackgroundPage().prevSite);
 		}
 		else 
-			$("strong").text("You failed! (typos are allowed)");
+			$("#message").text("You failed! (typos are allowed)");
 	});
 });
 
+//enter listener
+$(function(){
+	$('#input-a').keydown(function(e) {
+		if (e.keyCode == 13){
+			if (passed){
+				$("#message").text("You've Unlocked The Button...\nI hope you don't regret this");
+				$(".btn-success").removeAttr("disabled");	
+				$(".btn-success").attr("href", chrome.extension.getBackgroundPage().prevSite);
+			}
+			else
+			$("#message").text("You failed! (typos are allowed)");
+		}
+	});
+});

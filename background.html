@@ -12,55 +12,40 @@
 			<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
   </head>
   <body>
-		<div class="row">
-			<div class="page-header text-center">
-				<h1>MAD:<small> Mindfulness Anti Distraction</small></h1>
+			<div class="text-center content">
+				<h1>MAD: <small>Mindful Anti Distraction</small></h1>
 			</div>
-			<div class="col-md-8 col-md-offset-2 text-center">
-				<p class="lead">Read and <strong>type the text below</strong> if you REALLY HAVE to go to your site:</p>
-				<div class="jumbotron">
-				<blockquote>
-					<p class="lead" id="target"></p>
-				</blockquote>
-				</div>
-			</div>
-		</div>
-		<div class="row text-center">
-				<textarea id="input" class="form-control" rows="3"></textarea>
-			<input id="submit1" class="btn btn-primary" type="submit" value="Verify">
-			<a id="submit2"  class="btn btn-success" href="#" disabled="enabled">Enter Site</a>
-			<br><strong></strong>
-		</div>
-		<div class="row">
-			<h1 class="text-center">Do something more rewarding instead!</h1>
-			<br>
-			<div id="alternate" class="row text-center">
-				<div class="col-md-4 col-md-offset-2">
-					<a href="https://keep.google.com/">
-						<img src="img/gkeep.jpg" class="img-rounded">
-					</a>
-					<h3>Make/Look at your to-do list</h3>
-				</div>
-				<div class="col-md-4">
-					<a href="https://www.khanacademy.org/">
-						<img src="img/khanacad.jpg" class="img-circle">
-					</a>
-					<h3>Learn new mathematics and sciences</h3>
+
+			<div class="row content">
+				<h1 class="text-center">Do something more rewarding instead!</h1>
+				<br>
+				<div id="alternate" class="row text-center">
+					<div class="col-md-2 col-md-offset-2 col-sm-6">
+						<a href="https://keep.google.com/">
+							<img src="img/gkeep.jpg" class="img-rounded">
+						</a>
+						<h3>To-Do List</h3>
+					</div>
+					<div class="col-md-2 col-sm-6">
+						<a href="https://www.khanacademy.org/">
+							<img src="img/khanacad.jpg" class="img-circle">
+						</a>
+						<h3>Learn</h3>
+					</div>
+					<div class="col-md-2 col-sm-6">
+						<a href="https://www.duolingo.com/">
+							<img src="img/duolingo.jpg" class="img-circle">
+						</a>
+						<h3>Language</h3>
+					</div>
+					<div class="col-md-2 col-sm-6">
+						<a href="http://www.codecademy.com/">
+							<img src="img/codeacad.jpg" class="img-circle">
+						</a>
+						<h3>Code</h3>
+					</div>
 				</div>
 			</div>
-			<div id="alternate2" class="row text-center">
-				<div class="col-md-4 col-md-offset-2">
-					<a href="https://www.duolingo.com/">
-						<img src="img/duolingo.jpg" class="img-circle">
-					</a>
-					<h3>Speak a new language, forever</h3>
-				</div>
-				<div class="col-md-4">
-					<a href="http://www.codecademy.com/">
-						<img src="img/codeacad.jpg" class="img-circle">
-					</a>
-					<h3>Learn how to code in a new language, forever</h3>
-				</div>
 			<!--	
 					<br>
 					<a href="https://www.youtube.com/watch?v=KfnUicHDNM8">
@@ -71,8 +56,30 @@
 					</a>
 					-->
 
+	<div class="row content">
+			<div class="col-md-8 col-md-offset-2 text-center">
+				<p>Read and <strong>type the text below</strong> if you <strong>REALLY HAVE</strong> to go to your site:</p>
+				<div class="jumbotron-cust">
+				<blockquote>
+					<p id="target"></p>
+				</blockquote>
+				</div>
 			</div>
-		</div>	
+		</div>
+			<div class="text-center">
+				<div class="content-a">
+					<div class="form-inline">
+						<div class="form-group">
+							<label for="input-a">Retype</label>
+							<input type="text" id="input-a" class="custwidth form-control"></input>
+						</div>
+					</div>
+				</div>
+				<input id="submit1" class="btn btn-primary" type="submit" value="Verify">
+				<a id="submit2"  class="btn btn-success" href="#" disabled="enabled">Enter Site</a>
+				<br><strong id="message"></strong>
+			</div>
+		</div>
   </body>
 </html>
 

@@ -13,3 +13,21 @@ blockquote{
     -ms-user-select: none;
     user-select: none;
 }
+
+.jumbotron-cust{
+  padding: 25px 10px 10px 10px;
+  color: inherit;
+  background-color: #eee;
+}
+.content {
+	border-bottom: 2px solid #F50042;
+	line-height: 1.5em;
+	padding: 10px;
+}
+.content-a {
+	padding: 10px;
+}
+
+.form-control.custwidth{
+	width: 768px; 
+}
