@@ -20,7 +20,6 @@ window.onload = function setupUpdater(){
    , count=document.getElementById('message')
 	 , targetText = defSayings[Math.floor(Math.random()*defSayings.length)]
 	 , a = FuzzySet([targetText])
-   , oldText=input
    , timeout=null;
 
 	set(target, targetText);	

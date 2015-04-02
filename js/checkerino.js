@@ -38,11 +38,11 @@ var BlockCheck = function(blocklist){
 	this.blocklist = blocklist;
 
 	this.redirectOnMatch = function(req){
-		console.log(req);
 		var blocked = regexMatching(blocklist, req.url) && (req.tabId!==prevTabId) ;
-		if (blocked){
+		if (blocked && req.method=="GET"){
+		console.log(req);
 			storedUrl = req.url;
-			prevTabId= req.tabId;
+			if (req.tabId!==chrome.extension.getURL) prevTabId= req.tabId;
 			return {
 				redirectUrl : chrome.extension.getURL("background.html")
 			};

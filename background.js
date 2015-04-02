@@ -1,13 +1,11 @@
-var blockChecker,
+var globalOptions,
+		blockChecker,
 		blockList,
 		blockService;
 
 blockService = BlockListFactory.getBlockList();
 blockService.set(DefaultList);
 blockList = blockService.get();
-console.log(blockList);
-
-console.log("did background.js load properly");
 blockChecker = new BlockCheck(DefaultList);
 
 var prevSite = "";
