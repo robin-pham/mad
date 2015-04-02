@@ -30,19 +30,44 @@ var regexMatching = function(list, target){
 	return x.test(target);
 }
 
+function TabObject (tabId, origUrl, blockedStatus){
+	this.tabId = tabId;
+	this.currStatus = blockedStatus;
+	this.origUrl = origUrl;
+
+	this.changeStatus = function(newStatus){
+		this.currStatus = newStatus;
+	};
+}
+
 
 var BlockCheck = function(blocklist){
 	var storedUrl="";
 	var prevTabId;
 	// TODO include timestamps check var prevTimeStamp=0;
 	this.blocklist = blocklist;
-
 	this.redirectOnMatch = function(req){
-		var blocked = regexMatching(blocklist, req.url) && (req.tabId!==prevTabId) ;
-		if (blocked && req.method=="GET"){
-		console.log(req);
+
+		var tabBlock;
+		var blocked = regexMatching(blocklist, req.url) 
+		var result = $.grep(currTabs, function(e){
+				return e.tabId == req.tabId;
+		});
+		if (result.length==0)
+			tabBlock= false;	
+		else {
+			//validate if tab should be blocked again or not
+			//TODO ADD time functionality here
+			var resultStatus = result[0].currStatus;
+			if (resultStatus == false){
+				tabBlock = true;
+			}
+		}
+		blocked = blocked && !tabBlock;
+		if (blocked){
+			var toInsert = new TabObject(req.tabId, req.url, false);
+			currTabs.push(toInsert);
 			storedUrl = req.url;
-			if (req.tabId!==chrome.extension.getURL) prevTabId= req.tabId;
 			return {
 				redirectUrl : chrome.extension.getURL("background.html")
 			};

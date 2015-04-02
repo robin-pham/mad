@@ -44,14 +44,41 @@ window.onload = function setupUpdater(){
  input.onkeydown=input.onkeyup=onClick=eventHandler;
 };
 
+var activate = function(){
+	var currTabs = chrome.extension.getBackgroundPage().currTabs;
+	chrome.tabs.query({
+		active: true,
+		windowId: window.id
+	}, function (tabs, req){
+		/*	console.log("GPS CWGC tabs");
+		console.log(tabs);
+		console.log("GPS CWGC tabs[0]");
+		console.log(tabs[0]);
+		console.log("GPS CWGC currTabs");
+		console.log(currTabs);*/
+		result = $.grep(currTabs, function(e){
+				return e.tabId == tabs[0].id;
+		});
+/*		console.log("result");
+		console.log(result);*/
+		req = result;
+		if (req.length==0){
+			return "";
+		}
+		else{
+			$("#message").text("You've Unlocked The Button...\nI hope you don't regret this");
+			$(".btn-success").removeAttr("disabled");	
+			$(".btn-success").attr("href", req[0].origUrl);
+		}
+	});
+
+}
+
 //Button Listener function yeah yeah its jquery and the rest of this wasnt, I am learning!
 $(function(){
 	$(".btn-primary").click(function(){
 		if (passed){
-			$("#message").text("You've Unlocked The Button...\nI hope you don't regret this");
-			$(".btn-success").removeAttr("disabled");	
-			console.log(chrome.extension.getBackgroundPage());
-			$(".btn-success").attr("href", chrome.extension.getBackgroundPage().prevSite);
+			activate();
 		}
 		else 
 			$("#message").text("You failed! (typos are allowed)");
@@ -63,9 +90,7 @@ $(function(){
 	$('#input-a').keydown(function(e) {
 		if (e.keyCode == 13){
 			if (passed){
-				$("#message").text("You've Unlocked The Button...\nI hope you don't regret this");
-				$(".btn-success").removeAttr("disabled");	
-				$(".btn-success").attr("href", chrome.extension.getBackgroundPage().prevSite);
+				activate();
 			}
 			else
 			$("#message").text("You failed! (typos are allowed)");
