@@ -34,3 +34,7 @@ v0.1.0.3 30/03/2015
 - Changed UI so the alternatives are upfront, more immediate and relatively bigger. Intuitively that should be the focus, not the typing to unlock/go to the website.
 - Learned a bit more jquery syntax. It's much nicer for manipulating html elements =D.
 - The more positive focused thoughts seem better for now... Blind optimism doesn't seem appropriate here though.
+
+v0.1.0.5 02/04/2015
+- Fought around with AJAX functions. They're whack. Was too stubborn on trying to find a way to return a value from an async call. In the end, I should not fight with callback functions, just use em and reorganize my code so it's not like how you normally code in Java/C++,
+- Moving on to user customization now. Lots of things to consider. Should I use angular for 1-pagey-ness functionality? Tough questions. I think I'll try.
