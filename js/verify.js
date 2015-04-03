@@ -29,11 +29,9 @@ window.onload = function setupUpdater(){
   var newText=input.value;
 	var score = a.get(newText)[0][0];
   if (score>0.88) {
-		//debug set(count, "You are " + score*100 + "% accurate (need >91)");
 		passed = true;
 		return;
 	} else if (score> 0.1){
-		//debug set(count, "You are " + score*100 + "% accurate (need >91)");
 	}
  }
  
@@ -50,17 +48,9 @@ var activate = function(){
 		active: true,
 		windowId: window.id
 	}, function (tabs, req){
-		/*	console.log("GPS CWGC tabs");
-		console.log(tabs);
-		console.log("GPS CWGC tabs[0]");
-		console.log(tabs[0]);
-		console.log("GPS CWGC currTabs");
-		console.log(currTabs);*/
 		result = $.grep(currTabs, function(e){
 				return e.tabId == tabs[0].id;
 		});
-/*		console.log("result");
-		console.log(result);*/
 		req = result;
 		if (req.length==0){
 			return "";

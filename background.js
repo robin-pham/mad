@@ -8,7 +8,7 @@ blockService.set(DefaultList);
 blockList = blockService.get();
 blockChecker = new BlockCheck(DefaultList);
 
-var currTabs = []; //TODO bugfix 
+var currTabs = []; //TODO add additional information to these objects, e.g. time 
 var prevSite = "";
 
 chrome.webRequest.onBeforeRequest.addListener(
