@@ -1,17 +1,23 @@
 <!doctype html>
-<html>
+<html ng-app="app" ng-csp>
   <head>
     <title>MAD</title>
 			<script src="js/jquery.min.js"></script>
-			<script src="js/verify.js"></script>
 		 	<script src="js/fuzzyset.js"></script>
 		 	<script src="js/bootstrap.min.js"></script>
+		 	<script src="js/angular.min.js"></script>
 			<link rel="stylesheet" href="css/bootstrap.min.css">
 			<link rel="stylesheet" href="css/bootstrap-theme.min.css">
 			<link rel="stylesheet" href="css/main.css">
 			<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+			<!-- Modules -->
+			<script src="js/verify.js"></script>
+			<script src="js/app.js"></script>
+			<!--Controllers -->
+			<script src="js/altController.js"></script>
+
   </head>
-  <body>
+	<body >
 			<div class="text-center content">
 				<h1>MAD: <small>Mindful Anti Distraction</small></h1>
 			</div>
@@ -19,30 +25,13 @@
 			<div class="row content">
 				<h1 class="text-center">Do something more rewarding instead!</h1>
 				<br>
-				<div id="alternate" class="row text-center">
-					<div class="col-md-2 col-md-offset-2 col-sm-6">
-						<a href="https://keep.google.com/">
-							<img src="img/gkeep.jpg" class="img-rounded">
+				<div id="alternate" class="row text-center" ng-controller="AltController">
+					<div ng-repeat="alt in alternatives" class="col-md-3 col-sm-3 col-xs-3">
+						<a ng-href="{{ alt.href }}">
+							<img ng-src="{{ alt.imgsrc }}" class="img-circle">
 						</a>
-						<h3>To-Do List</h3>
-					</div>
-					<div class="col-md-2 col-sm-6">
-						<a href="https://www.khanacademy.org/">
-							<img src="img/khanacad.jpg" class="img-circle">
-						</a>
-						<h3>Learn</h3>
-					</div>
-					<div class="col-md-2 col-sm-6">
-						<a href="https://www.duolingo.com/">
-							<img src="img/duolingo.jpg" class="img-circle">
-						</a>
-						<h3>Language</h3>
-					</div>
-					<div class="col-md-2 col-sm-6">
-						<a href="http://www.codecademy.com/">
-							<img src="img/codeacad.jpg" class="img-circle">
-						</a>
-						<h3>Code</h3>
+						<h3>{{ alt.text }}</h3>
+						<p ng-click="delete($index)">X</p>
 					</div>
 				</div>
 			</div>

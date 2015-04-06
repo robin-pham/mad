@@ -46,7 +46,7 @@ var activate = function(){
 	var currTabs = chrome.extension.getBackgroundPage().currTabs;
 	chrome.tabs.query({
 		active: true,
-		windowId: window.id
+		windowId: chrome.windows.WINDOW_ID_CURRENT
 	}, function (tabs, req){
 		result = $.grep(currTabs, function(e){
 				return e.tabId == tabs[0].id;
