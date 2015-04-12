@@ -2,37 +2,92 @@
 <html ng-app="app" ng-csp>
   <head>
     <title>MAD</title>
-			<script src="js/jquery.min.js"></script>
-		 	<script src="js/fuzzyset.js"></script>
-		 	<script src="js/bootstrap.min.js"></script>
-		 	<script src="js/angular.min.js"></script>
-			<link rel="stylesheet" href="css/bootstrap.min.css">
-			<link rel="stylesheet" href="css/bootstrap-theme.min.css">
-			<link rel="stylesheet" href="css/main.css">
-			<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-			<!-- Modules -->
-			<script src="js/verify.js"></script>
-			<script src="js/app.js"></script>
-			<!--Controllers -->
-			<script src="js/altController.js"></script>
+		<!-- Scripts -->
+		<script src="js/shared/jquery.min.js"></script>
+		<script src="js/fuzzyset.js"></script>
+		<script src="js/shared/bootstrap.min.js"></script>
+		<script src="js/shared/angular.min.js"></script>
+		<script src="js/shared/ui-bootstrap.min.js"></script>
 
+		<!-- Stylin Style Sheets-->
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/bootstrap-theme.min.css">
+		<link rel="stylesheet" href="css/main.css">
+		<link rel="stylesheet" href="css/angular-csp.css">
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
+		<!-- Modules -->
+		<script src="js/verify.js"></script>
+		<script src="js/app.js"></script>
+
+		<!--Controllers -->
+		<script src="js/controllers/altController.js"></script>
+		<script src="js/controllers/headerController.js"></script>
   </head>
+
 	<body >
-			<div class="text-center content">
+			<div class="text-center content" ng-controller="HeaderController">
 				<h1>MAD: <small>Mindful Anti Distraction</small></h1>
+				<button class='btn btn-danger' ng-click='openOptions("lg")'>BlockList</button>
 			</div>
 
 			<div class="row content">
 				<h1 class="text-center">Do something more rewarding instead!</h1>
 				<br>
 				<div id="alternate" class="row text-center" ng-controller="AltController">
-					<div ng-repeat="alt in alternatives" class="col-md-3 col-sm-3 col-xs-3">
-						<a ng-href="{{ alt.href }}">
+					<div ng-repeat="alt in alternatives track by $index" class="col-md-3 col-sm-3 col-xs-3">
+						<a ng-href="{{ alt.href || urlFilter }}" style="text-decoration: none">
 							<img ng-src="{{ alt.imgsrc }}" class="img-circle">
-						</a>
 						<h3>{{ alt.text }}</h3>
-						<p ng-click="delete($index)">X</p>
+						</a>
+						<button class='btn btn-xs btn-danger' ng-click='deleteAlt($index)'>X</button>
 					</div>
+
+
+					<div id="previewAlt" class="col-md-3 col-sm-3 col-xs-3" ng-hide="!bools.addingItem">
+						<img ng-src="img/default/happygrey.png"class="img-circle" height="140" width="140">
+						<h3> {{ newAltText }} </h3>
+						<p> PREVIEW </p>
+					</div>
+
+
+					<div class ='row animate-show' id='newItem' ng-hide="!bools.addingItem">
+						<div class='col-md-12'>
+						<form class="form-horizontal" id="newItemForm" name="NIform" ng-submit="submitNew()" novalidate>
+							<br>
+							<div class='form-group'>
+								<label for='inputText' class='col-sm-offset-2 col-sm-2 control-label'>Text </label>
+								<div class='col-sm-4'>
+									<input id='inputText'type='text' name='text' class='form-control' ng-model='newAltText' ng-minlength='1' required="">
+								</div>
+								<div class='col-sm-4 text-left'>
+									<p ng-show="NIform.text.$error.required">Required</p>
+								</div>
+							</div>
+							<div class='form-group'>
+								<label for='inputUrl' class='col-sm-offset-2 col-sm-2 control-label'>Link/Href</label>
+								<div class='col-sm-4'>
+									<input id='inputUrl' type='url' name='url' class='form-control' ng-model='newAltUrl' ng-minlength='1' required="">
+								</div>
+								<div class='col-sm-4 text-left'>
+									<p ng-show="NIform.url.$invalid">Required: Proper URL (http/https)</p>
+								</div>
+							</div>
+							<div class='form-group'>
+								<label for='inputImg' class='col-sm-offset-2 col-sm-2 control-label'>Upload Image (COMING SOON!)</label>
+								<input type="file" disabled='disabled' class="col-sm-4 btn btn-primary" id='submitPhoto' nv-file-select uploader='upload' value="Upload"/>
+							</div>
+							<input type="submit" ng-disabled='NIform.$invalid' class='btn btn-primary' id='submit' value='Submit'/>
+							<button type="button" class="btn btn-danger" ng-click="switchAdd()"> Cancel </button>
+						</form>
+						</div>
+					</div>
+					<div class="col-md-3 col-sm-3 col-xs-3" ng-hide="bools.addingItem">
+						<br>
+						<a href=""> <img ng-click="switchAdd()" src="img/add.png"></img>
+							<h3 ng-click="switchAdd()"> Add your Link</h3></a>
+					</div>
+
 				</div>
 			</div>
 			<!--	

@@ -1,3 +1,7 @@
+.nounderline{
+	text-decoration: none
+}
+
 body{
 	color: #0A7ED7;
 	font-family:
@@ -30,4 +34,21 @@ blockquote{
 
 .form-control.custwidth{
 	width: 768px; 
+}
+
+.modal-left{
+	padding-right: 20px;
+  border-right: 1px solid #ccc;
+}
+
+.modal-left-item{
+	padding-bottom:5px;
+}
+
+.modal-left-buttons{
+	padding: 0px;
+}
+
+.modal-right-button{
+	padding-left: 0px;
 }

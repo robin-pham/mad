@@ -16,7 +16,7 @@ var defSayings = [
  */
 var passed = false; 
 window.onload = function setupUpdater(){
- var input=document.getElementsByTagName('input')[0]
+ var input=document.getElementById('input-a')
    , count=document.getElementById('message')
 	 , targetText = defSayings[Math.floor(Math.random()*defSayings.length)]
 	 , a = FuzzySet([targetText])
@@ -28,6 +28,7 @@ window.onload = function setupUpdater(){
  function handleChange(){
   var newText=input.value;
 	var score = a.get(newText)[0][0];
+	//	console.log("handling change: score: " + score);
   if (score>0.88) {
 		passed = true;
 		return;
@@ -43,6 +44,7 @@ window.onload = function setupUpdater(){
 };
 
 var activate = function(){
+//	console.log("does activate function trigger");
 	var currTabs = chrome.extension.getBackgroundPage().currTabs;
 	chrome.tabs.query({
 		active: true,
@@ -61,7 +63,7 @@ var activate = function(){
 			$(".btn-success").attr("href", req[0].origUrl);
 		}
 	});
-
+	return 'poop';
 }
 
 //Button Listener function yeah yeah its jquery and the rest of this wasnt, I am learning!

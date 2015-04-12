@@ -38,3 +38,8 @@ v0.1.0.3 30/03/2015
 v0.1.0.5 02/04/2015
 - Fought around with AJAX functions. They're whack. Was too stubborn on trying to find a way to return a value from an async call. In the end, I should not fight with callback functions, just use em and reorganize my code so it's not like how you normally code in Java/C++,
 - Moving on to user customization now. Lots of things to consider. Should I use angular for 1-pagey-ness functionality? Tough questions. I think I'll try.
+
+v0.2.0.0 10/04/2015
+- Learnt AngularJS to implement some one-page functionality goodness. It's SO COOOOOOL. Enjoying the simplicity of the MVC framework and how seamless and speedy things run. 
+- Ran into more asynchronous problems, although this time I fixed them rather quickly now that I have more experience. Just gotta get used to that asynchronous thinkin ya feeeeel.
+- I keep on thinking of more and more things to do or add. I'm going to have to speed up the rate in which I complete things, or else I'm going to get squashed.

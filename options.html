@@ -1,34 +1,75 @@
 <!doctype html>
-<html>
+<html ng-app="app" ng-csp>
   <head>
     <title>MAD Options</title>
-		 	<script src="js/bootstrap.min.js"></script>
+		 	<script src="js/shared/bootstrap.min.js"></script>
+		<!--	<script src="js/shared/angular.min.js"></script>
+		<script src="js/shared/ui-bootstrap-ng.min.js"></script>-->
+
 			<link rel="stylesheet" href="css/bootstrap.min.css">
 			<link rel="stylesheet" href="css/bootstrap-theme.min.css">
 			<link rel="stylesheet" href="css/main.css">
 			<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
   </head>
   <body>
-		<div class="text-center">
-			<h1>Options</h1>
+		<div class='modal-header text-center'>
+			<h1> BlockList </h1>
 		</div>
 
-Favorite color:
-<select id="color">
- <option value="red">red</option>
- <option value="green">green</option>
- <option value="blue">blue</option>
- <option value="yellow">yellow</option>
-</select>
+		<div class="modal-body text-center">
+			<div class='row'>
+				<div class="col-md-7 modal-left">
+					<div ng-repeat="block in blocklist track by $index">
+						<div class='row modal-left-item'>
+						<div class='col-md-9'>
+							<input id="form{{$index}}" ng-model="block" type='text' class='form-control' value='{{ block }}'/> 
+						</div>
+						<div class='col-md-3 modal-left-buttons btn-group' role='group' aria-label="...">
+							<button class='btn btn-success btn-sm' ng-click='saveBlock($index, block)'>Save</button>
+							<button class='btn btn-danger btn-sm' ng-click='deleteBlock($index)'>Delete</button>
+						</div>
+					</div>
+					</div>
+				</div>
+				<div class='col-md-5'>
+					<h3>ASSIST FUTURE SELF</h3>
+					<div class='row'>
+						<h4>Simple Domain Block</h4>
+						<div class='col-md-10'>
+							<input id="simpleDomain" ng-model="simple" type='text' class='form-control' placeholder='e.g. reddit or twitter'/> 
+						</div>
+						<div class='col-md-2 modal-right-button'>
+							<button class='btn btn-success btn-sm' ng-click='addSimple()'>Add</button>
+						</div>
+					</div>
+					<div class='row'>
+						<h4>Exactsies Block</h4>
+							<div class='col-md-10'>
+								<input id="exactUrl" ng-model="exact" type='text' class='form-control' placeholder='e.g. http://www.reddit.com/r/all'/> 
+							</div>
+							<div class='col-md-2 modal-right-button'>
+								<button class='btn btn-success btn-sm' ng-click='addExact()'>Add</button>
+							</div>
+					</div>
+				<!--	<div class='row'>
+						<h4>Custom Regex</h4>
+							<div class='col-md-10'>
+								<input id="regex" ng-model="regex" type='text' class='form-control' placeholder='JS string regex, start with /^ and end with $/'/> 
+							</div>
+							<div class='col-md-2 modal-right-button'>
+								<button class='btn btn-success btn-sm' ng-click='saveRegex()'>Add</button>
+							</div>
+						</div>-->
+				</div>
+			</div>
+		</div>
+		<div class='modal-footer text-center'>
+			<div class='row col-md-12 text-center'>
+			<button class='btn btn-primary' ng-disabled='undoBool' ng-click='undo()'>Undo</button>
+			<button class='btn btn-danger' ng-click='cancel()'>Cancel</button>
+			</div>
+		</div>
 
-<label>
-  <input type="checkbox" id="like">
-  I like colors.
-</label>
-
-<div id="status"></div>
-<button id="save">Save</button>
-
-  </body>
+	</body>
 </html>
 
