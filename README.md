@@ -43,3 +43,9 @@ v0.2.0.0 10/04/2015
 - Learnt AngularJS to implement some one-page functionality goodness. It's SO COOOOOOL. Enjoying the simplicity of the MVC framework and how seamless and speedy things run. 
 - Ran into more asynchronous problems, although this time I fixed them rather quickly now that I have more experience. Just gotta get used to that asynchronous thinkin ya feeeeel.
 - I keep on thinking of more and more things to do or add. I'm going to have to speed up the rate in which I complete things, or else I'm going to get squashed.
+
+v0.2.1.0 12/04/2015
+- Now fully using AngularJS wherever I can. Still a newbie, but angular makes everything so much easier.
+- Had a real hard time setting up Protractor with angular + chrome extensions. Gave up, but I still want to get into TDD. Going to try using Karma next?
+- Finally got around to implementing some customization functionality. Took me around a whole day of coding.
+- My code base is getting progressively more and more disgustingly obese and gross. 
