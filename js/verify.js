@@ -5,12 +5,12 @@ function set(el,text){
  
 var defSayings = [
 	"I am in control over my actions",
-	"I have done my main goals for the day, and need to use this website",
-	"Sites are simply tools, they don't control me",
+	"I have done my main goals for the day and need to use this website",
+	"Sites are simply tools. They don't control me",
 	"Resisting this site is easy",
 	"I ain't gonna get tricky tricked by my mindless monotony",
 	"I am going here not out of habit, but for a solid purpose",
-	"Taking a second and thinkin-a-linkin"
+	"Taking a second and thinkin a linkin"
 	]
 /* setupUpdater will be called once, on page load.
  */
@@ -73,7 +73,7 @@ $(function(){
 			activate();
 		}
 		else 
-			$("#message").text("You failed! (typos are allowed)");
+			$("#message").text("You failed! (some typos are allowed)");
 	});
 });
 
@@ -85,7 +85,7 @@ $(function(){
 				activate();
 			}
 			else
-			$("#message").text("You failed! (typos are allowed)");
+			$("#message").text("You failed! (some typos are allowed)");
 		}
 	});
 });
