@@ -6,6 +6,9 @@ var ModalInstanceCtrl = function($scope, $modalInstance) {
 	//for each action keep type and what was done
 	//redo in queue like fashion?
 	$scope.undoBool = true;
+	chrome.storage.sync.set({'alternatives': $scope.alternatives}, function(){
+		console.log('saved');
+	});
 	$scope.undoHistoryQueue = [];
 
 	$scope.undo = function(){
@@ -22,17 +25,26 @@ var ModalInstanceCtrl = function($scope, $modalInstance) {
 				$scope.undoBool = true;
 			}
 		} 
-		
 	}
-	$scope.deleteSpree = false;
+
+	chrome.storage.sync.get('firstTimeDelete', function(item){
+		if (item.firstTimeDelete == undefined){
+			$scope.firstTimeDelete = false;
+		} else{
+			$scope.firstTimeDelete = item.firstTimeDelete;
+		}
+		$scope.$apply();
+	});
+
 	$scope.deleteBlock = function(index) {
-		if (!$scope.deleteSpree){
+		if (!$scope.firstTimeDelete){
 			if (confirm('Hey! You can still go to this site. You just gotta type a tiny message. (psst press cancel)')){
-				if (confirm("You're probably a cool person. Cool people don't care about a lil typing every now and then")){
-					if (confirm("Let's just assume you're doing this for good reasons (you can still press cancel if you realize you aren't)")){
-					$scope.deleteSpree = true;
+				if (confirm("You can delete from now on if you press OK. But I can't even think of a scenario in which deleting will help in the long run")){
+					$scope.firstTimeDelete = true;
+					chrome.storage.sync.set({'firstTimeDelete': $scope.firstTimeDelete}, function(){
+						console.log('firstTimeDelete saved');
+					});
 					$scope.deleteBlock(index);
-					}
 				}
 			}
 		} else{

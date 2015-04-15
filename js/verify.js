@@ -49,18 +49,21 @@ var activate = function(){
 	chrome.tabs.query({
 		active: true,
 		windowId: chrome.windows.WINDOW_ID_CURRENT
-	}, function (tabs, req){
+	}, function (tabs){
 		result = $.grep(currTabs, function(e){
+				console.log(currTabs);
+				e.currStatus = false;
 				return e.tabId == tabs[0].id;
 		});
-		req = result;
-		if (req.length==0){
+		console.log(result[0]);
+		if (result.length==0){
 			return "";
 		}
 		else{
 			$("#message").text("You've Unlocked The Button...\nI hope you don't regret this");
+			console.log(result[0]);
 			$(".btn-success").removeAttr("disabled");	
-			$(".btn-success").attr("href", req[0].origUrl);
+			$(".btn-success").attr("href", result[0].origUrl);
 		}
 	});
 	return 'poop';

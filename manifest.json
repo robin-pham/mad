@@ -3,7 +3,7 @@
   "name": "MAD - Mindful Anti Distraction",
 	"short_name": "MAD BETA",
   "description": "This extension will hopefully help you be less distracted",
-  "version": "0.2.0.0",
+  "version": "0.2.1.1",
   "background": {
 		"scripts": ["js/shared/jquery.min.js","js/checkerino.js","background.js"],
 		"pages": ["background.html"]
