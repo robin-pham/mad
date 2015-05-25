@@ -23,12 +23,14 @@
 		<!--Controllers -->
 		<script src="js/controllers/altController.js"></script>
 		<script src="js/controllers/headerController.js"></script>
+		<script src="js/controllers/footerController.js"></script>
   </head>
 
-	<body >
+	<body>
 			<div class="text-center content" ng-controller="HeaderController">
 				<h1>MAD: <small>Mindful Anti Distraction</small></h1>
-				<button class='btn btn-danger' ng-click='openOptions("lg")'>BlockList</button>
+				<button class='btn btn-danger' ng-click='openOptions("lg")'>Block List</button>
+				<button class='btn btn-success' ng-click='openReasons("lg")'>Reason Tracker</button>
 			</div>
 
 			<div class="row content">
@@ -36,16 +38,26 @@
 				<br>
 				<div id="alternate" class="row text-center" ng-controller="AltController">
 					<div ng-repeat="alt in alternatives track by $index" class="col-md-3 col-sm-3 col-xs-3">
-						<a ng-href="{{ alt.href || urlFilter }}" style="text-decoration: none">
-							<img ng-src="{{ alt.imgsrc }}" class="img-circle">
-						<h3>{{ alt.text }}</h3>
-						</a>
-						<button class='btn btn-xs btn-danger' ng-click='deleteAlt($index)'>X</button>
+						<div ng-hide="editMode[$index]">
+							<a ng-href="{{ alt.href || urlFilter }}" style="text-decoration: none">
+								<img ng-src="{{ alt.imgsrc }}" class="restrict-img-circle img-circle">
+							<h3>{{ alt.text }}</h3>
+							</a>
+						</div>
+						<div ng-hide="!editMode[$index]">
+							<a href=""><span class='glyphicon glyphicon-chevron-left' aria-hidden="true" ng-click='switchPic("left", $index)'></span></a>
+								<img ng-src="{{ alt.imgsrc }}" class="restrict-img-circle img-circle">
+								<a href=""><span class='glyphicon glyphicon-chevron-right' aria-hidden="true" ng-click='switchPic("right", $index)'></span></a>
+							<input class='form-control text-center nice-form-control' ng-model="alt.text" ></h3>
+						</div>
+						<button class='btn btn-xs btn-danger' ng-click='deleteAlt($index)'><span class='glyphicon glyphicon-trash' aria-hidden="true"></span></button>
+						<button class='btn btn-xs btn-warning' ng-click='editAlt($index)'><span class='glyphicon glyphicon-wrench' aria-hidden="true"></span></button>
 					</div>
 
 
 					<div id="previewAlt" class="col-md-3 col-sm-3 col-xs-3" ng-hide="!bools.addingItem">
-						<img ng-src="img/default/happygrey.png"class="img-circle" height="140" width="140">
+						<img ng-show="!NIform.imgurl.$invalid" ng-src="img/default/happygrey.png"class="restrict-img-circle img-circle" height="140" width="140">
+						<img ng-show="NIform.imgurl.$invalid" ng-src="{{newAltImgUrl}}" class="restrict-img-circle img-circle">
 						<h3> {{ newAltText }} </h3>
 						<p> PREVIEW </p>
 					</div>
@@ -74,8 +86,10 @@
 								</div>
 							</div>
 							<div class='form-group'>
-								<label for='inputImg' class='col-sm-offset-2 col-sm-2 control-label'>Upload Image (COMING SOON!)</label>
-								<input type="file" disabled='disabled' class="col-sm-4 btn btn-primary" id='submitPhoto' nv-file-select uploader='upload' value="Upload"/>
+								<label for='inputUrl' class='col-sm-offset-2 col-sm-2 control-label'>Image Link (Optional)</label>
+								<div class='col-sm-4'>
+									<input id='inputUrl' type='url' name='imgurl' class='form-control' ng-model='newAltImgUrl' ng-minlength='1'>
+								</div>
 							</div>
 							<input type="submit" ng-disabled='NIform.$invalid' class='btn btn-primary' id='submit' value='Submit'/>
 							<button type="button" class="btn btn-danger" ng-click="switchAdd()"> Cancel </button>
@@ -100,30 +114,46 @@
 					</a>
 					-->
 
-	<div class="row content-a">
-			<div class="col-md-8 col-md-offset-2 text-center">
-				<p>Read and <strong>type the text below</strong> if you <strong>REALLY HAVE</strong> to go to your site:</p>
-				<div class="jumbotron-cust">
-				<blockquote>
-					<p id="target"></p>
-				</blockquote>
-				</div>
+	<div class="row content-a" ng-controller="FooterController">
+		<div class="row text-center">
+		<div class="col-md-8 col-md-offset-2 ">
+			<p>Read and <strong>type the text below</strong> if you <strong>REALLY HAVE</strong> to go to your site:</p>
+			<div class="jumbotron-cust">
+			<blockquote>
+				<p id="target"></p>
+			</blockquote>
 			</div>
 		</div>
-			<div class="text-center">
+		</div>
+			<div class="container">
 				<div class="content-a">
-					<div class="form-inline">
+					<form class="form-horizontal">
 						<div class="form-group">
-							<label for="input-a">Retype</label>
-							<input type="text" id="input-a" class="custwidth form-control"></input>
+							<label class="col-sm-2 control-label" for="input-a">Retype</label>
+							<div class="col-sm-10">
+								<input type="text" id="input-a" class="custwidth form-control"></input>
+							</div>
 						</div>
-					</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label" for="input-b">Reason Tracking (Optional)</label>
+							<div class="col-sm-10">
+								<input type="text" id="input-b" class="custwidth form-control" ng-model="reason"></input>
+							</div>
+						</div>
+					</form>
 				</div>
+				<div class="text-center">
 				<input id="submit1" class="btn btn-primary" type="submit" value="Verify">
-				<a id="submit2"  class="btn btn-success" href="#" disabled="enabled">Enter Site</a>
+				<a id="submit2"  class="btn btn-success" href="#" disabled="enabled" ng-click='enterSite()'>Enter Site</a>
 				<br><strong id="message"></strong>
+				</div>
+
 			</div>
 		</div>
+	</div>
+	<div class="text-center">
+		<h2 class="btn btn-danger text-center">HELP IM DISTRACTED</h2>
+	</div>
   </body>
 </html>
 

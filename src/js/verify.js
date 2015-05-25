@@ -1,16 +1,21 @@
 function set(el,text){
- while(el.firstChild)el.removeChild(el.firstChild);
+ while (el.firstChild) {
+     el.removeChild(el.firstChild);
+ }
  el.appendChild(document.createTextNode(text))
 }
  
 var defSayings = [
 	"I am in control over my actions",
-	"I have done my main goals for the day and need to use this website",
-	"Sites are simply tools. They don't control me",
+	"I am aware of my main goals for the day",
+	"Sites are only tools. They don't control me",
 	"Resisting this site is easy",
-	"I ain't gonna get tricky tricked by my mindless monotony",
-	"I am going here not out of habit, but for a solid purpose",
-	"Taking a second and thinkin a linkin"
+	"Not all those who wander are lost",
+	"I will fight my automatic actions",
+	"Conserve willpower through smart choices",
+	"Mindless rote behaviour is changeable",
+	"Refocus on what needs to be done",
+	"What was the cue that led me here?"
 	]
 /* setupUpdater will be called once, on page load.
  */
@@ -28,7 +33,6 @@ window.onload = function setupUpdater(){
  function handleChange(){
   var newText=input.value;
 	var score = a.get(newText)[0][0];
-	//	console.log("handling change: score: " + score);
   if (score>0.88) {
 		passed = true;
 		return;
@@ -37,58 +41,59 @@ window.onload = function setupUpdater(){
  }
  
  function eventHandler(){
-  if(timeout) clearTimeout(timeout);
-  timeout=setTimeout(handleChange, 50);
+  if (timeout) {
+      clearTimeout(timeout);
+  }
+  timeout=setTimeout(handleChange, 30);
  }
  input.onkeydown=input.onkeyup=onClick=eventHandler;
 };
 
 var activate = function(){
-//	console.log("does activate function trigger");
 	var currTabs = chrome.extension.getBackgroundPage().currTabs;
 	chrome.tabs.query({
 		active: true,
 		windowId: chrome.windows.WINDOW_ID_CURRENT
 	}, function (tabs){
 		result = $.grep(currTabs, function(e){
-				console.log(currTabs);
 				e.currStatus = false;
 				return e.tabId == tabs[0].id;
 		});
-		console.log(result[0]);
 		if (result.length==0){
-			return "";
+			return false;
 		}
 		else{
-			$("#message").text("You've Unlocked The Button...\nI hope you don't regret this");
+			$("#message").text("Button Unlocked");
 			console.log(result[0]);
 			$(".btn-success").removeAttr("disabled");	
 			$(".btn-success").attr("href", result[0].origUrl);
+			return true;
 		}
 	});
-	return 'poop';
+	return false;
 }
 
-//Button Listener function yeah yeah its jquery and the rest of this wasnt, I am learning!
+//jquery (old code)
+//click listener
 $(function(){
 	$(".btn-primary").click(function(){
-		if (passed){
+		if (passed) {
 			activate();
-		}
-		else 
-			$("#message").text("You failed! (some typos are allowed)");
+		} else {
+            $("#message").text("Some typos are allowed, but not that many!");
+        }
 	});
 });
 
 //enter listener
 $(function(){
-	$('#input-a').keydown(function(e) {
+	$('#input-a, #input-b').keydown(function(e) {
 		if (e.keyCode == 13){
-			if (passed){
+			if (passed) {
 				activate();
-			}
-			else
-			$("#message").text("You failed! (some typos are allowed)");
+			} else {
+                $("#message").text("Some typos are allowed, but not that many!");
+            }
 		}
 	});
 });

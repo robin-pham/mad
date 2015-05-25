@@ -5,6 +5,7 @@
 		<script src="js/shared/angular.min.js"></script>
 		<script src="js/popup.js"></script>
 		<script src="js/shared/bootstrap.min.js"></script>
+		<script src="js/shared/angular-strap.min.js"></script>
 
 		<!-- Stylin Style Sheets-->
 		<link rel="stylesheet" href="css/bootstrap.min.css">
@@ -16,11 +17,13 @@
 		<script src="js/controllers/popupController.js"></script>
 	</head>
 
-	<body style="width:135px" ng-controller="PopupController">
-		<div id="blacklist">
-			<button ng-click="addToBlock()" ng-disabled="isBlocked" id="blacklist_button" class="btn btn-primary" type="submit">BLOCK THIS SITE</button> </div>
-		<!--<div id="whitelist">
-			<input ng-click="testfunc()" id="whitelist_button" class="btn btn-primary" type="submit" value="This shit ballin"> </input></div> -->
+	<body ng-controller="PopupController">
+		<div id="header">
+			<nav class="navbar navbar-static-top ">
+			<button href="" class="btn btn-primary"><span class="glyphicon glyphicon-cog"></span></button>
+			<button ng-click="addToBlock()" ng-disabled="isBlocked" id="blacklist_button" class="btn btn-primary" type="submit">Block this site</button> 
+			</nav>
+		</div>
 	</body>
 </html>
 

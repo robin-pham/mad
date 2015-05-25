@@ -21,7 +21,8 @@ var regexMatching = function(list, target){
 	];
 
 	var redirSites = [
-		"facebook.com/l.php"
+		"facebook.com/l.php",
+		"youtube.com/redirect"
 		];
 	var simpleSiteRegex,
 		generalRegex,
@@ -35,7 +36,12 @@ var regexMatching = function(list, target){
 	}
 	domains = domains + ')'
 	var end = '\\.'+ domains + '/[\\W\\w]*$';
-	redirRegex = new RegExp(start + redirSites[0] + '.*$');
+
+	var redir =  '(' + redirSites[0];
+	for (var j=1; j< redirSites.length; j++){
+		redir = redir + '|' + redirSites[j];
+	}
+	redirRegex = new RegExp(start + redir + ')' + '.*$');
 	simpleSiteRegex = new RegExp(start+'.*$');
 	var middle = "";
 	var exactsiesBlock = false;

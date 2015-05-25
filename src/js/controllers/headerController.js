@@ -1,13 +1,23 @@
-var ModalInstanceCtrl = function($scope, $modalInstance) {
+var ReasonTrackerModalInstanceCtrl = function($scope, $modalInstance){
+	$scope.cancel = function() {
+		$modalInstance.dismiss('cancel');
+	};
+
+	chrome.storage.sync.get('reasons', function(item){
+		if (item.reasons == undefined){
+			$scope.reasons = [];
+		} else {
+			console.log(item.reasons);
+			$scope.reasons = item.reasons;
+		}
+		$scope.$apply();
+	});
+};
+var BlockListModalInstanceCtrl = function($scope, $modalInstance) {
 
 	$scope.blocklist = bkg.blockList;
-	//$scope.enabledEdits = [];
-	//keep track of every action
-	//for each action keep type and what was done
-	//redo in queue like fashion?
 	$scope.undoBool = true;
 	chrome.storage.sync.set({'alternatives': $scope.alternatives}, function(){
-		console.log('saved');
 	});
 	$scope.undoHistoryQueue = [];
 
@@ -38,15 +48,13 @@ var ModalInstanceCtrl = function($scope, $modalInstance) {
 
 	$scope.deleteBlock = function(index) {
 		if (!$scope.firstTimeDelete){
-			if (confirm('Hey! You can still go to this site. You just gotta type a tiny message. (psst press cancel)')){
-				if (confirm("You can delete from now on if you press OK. But I can't even think of a scenario in which deleting will help in the long run")){
+				if (confirm("You can delete from now on if you press OK. But it may be better to leave things as they are.")){
 					$scope.firstTimeDelete = true;
 					chrome.storage.sync.set({'firstTimeDelete': $scope.firstTimeDelete}, function(){
 						console.log('firstTimeDelete saved');
 					});
 					$scope.deleteBlock(index);
 				}
-			}
 		} else{
 			$scope.undoHistoryQueue.push({
 				type: 'deletion',
@@ -101,14 +109,22 @@ var ModalInstanceCtrl = function($scope, $modalInstance) {
 
 app.controller('HeaderController', ['$scope', '$modal',
 	function($scope, $modal){
-		console.log('header controller');
 		$scope.openOptions = function(size) {
 			var modalInstance = $modal.open({
-				templateUrl:'../../options.html',
-				controller: ModalInstanceCtrl,
+				templateUrl:'../../blocklist.html',
+				controller: BlockListModalInstanceCtrl,
 				size: size
 			});
 		};
+
+		$scope.openReasons = function(size){
+			var modalInstance = $modal.open({
+				templateUrl:'../../reasons.html',
+				controller: ReasonTrackerModalInstanceCtrl,
+				size: size
+			});
+
+		}
 	
 }]);
 

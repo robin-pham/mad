@@ -1,0 +1,43 @@
+
+<!doctype html>
+<html ng-app="app" ng-csp>
+  <head>
+    <title>MAD Reasons</title>
+		 	<script src="js/shared/bootstrap.min.js"></script>
+		<!--	<script src="js/shared/angular.min.js"></script>
+		<script src="js/shared/ui-bootstrap-ng.min.js"></script>-->
+
+			<link rel="stylesheet" href="css/bootstrap.min.css">
+			<link rel="stylesheet" href="css/bootstrap-theme.min.css">
+			<link rel="stylesheet" href="css/main.css">
+			<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+  </head>
+  <body>
+		<div class='modal-header text-center'>
+			<h1> Reason Tracker</h1>
+		</div>
+
+		<div class="col-md-4 text-left">
+			<h2> Good Reasons </h2>
+		</div>
+		<div class="col-md-4 text-center">
+			<h2> Unsorted Reasons </h2>
+			<div ng-repeat="reason in reasons track by $index">
+				<p> {{ reason }} </p>
+			</div>
+		</div>
+		<div class="col-md-4 text-right">
+			<h2> Poor Reasons </h2>
+		</div>
+
+
+		<div class='modal-footer text-center'>
+			<div class='row col-md-12 text-center'>
+			<button class='btn btn-primary' ng-disabled='undoBool' ng-click='undo()'>Clear All</button>
+			<button class='btn btn-danger' ng-click='cancel()'>Close</button>
+			</div>
+		</div>
+
+	</body>
+</html>
+

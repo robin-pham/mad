@@ -52,3 +52,17 @@ blockquote{
 .modal-right-button{
 	padding-left: 0px;
 }
+
+.nice-form-control{
+	margin-top: 20px;
+	margin-bottom: 10px;
+	font-size: 24px;
+	color: #337AB7;
+}
+
+.restrict-img-circle{
+	max-width: 150px;
+	max-height: 150px;
+}
+
+
