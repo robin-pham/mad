@@ -11,26 +11,34 @@ var defSayings = [
 	"Sites are only tools. They don't control me",
 	"Resisting this site is easy",
 	"Not all those who wander are lost",
+	"My future self can benefit from this",
 	"I will fight my automatic actions",
 	"Conserve willpower through smart choices",
 	"Mindless rote behaviour is changeable",
 	"Refocus on what needs to be done",
+	"I should strive to help out my future self",
 	"What was the cue that led me here?"
 	]
+
 /* setupUpdater will be called once, on page load.
  */
 var passed = false; 
+var count = 0;
+var targetPasses= chrome.extension.getBackgroundPage().settings['numOfPasses'];
+var currentText = "";
+
 window.onload = function setupUpdater(){
  var input=document.getElementById('input-a')
-   , count=document.getElementById('message')
-	 , targetText = defSayings[Math.floor(Math.random()*defSayings.length)]
-	 , a = FuzzySet([targetText])
-   , timeout=null;
-
-	set(target, targetText);	
+   , timeout=null
+	 , ifOne = "Verify"
+	, numLeft = "Verify (" + (targetPasses-count) +")";
+ changeText(target);
+ if ((targetPasses-count)==1) set(submit1, ifOne);
+ else set(submit1, numLeft);
 
 
  function handleChange(){
+	var a = FuzzySet([currentText])
   var newText=input.value;
 	var score = a.get(newText)[0][0];
   if (score>0.88) {
@@ -49,27 +57,52 @@ window.onload = function setupUpdater(){
  input.onkeydown=input.onkeyup=onClick=eventHandler;
 };
 
+var changeText = function(element){
+	$("#input-a").val('');
+	var targetText = defSayings[Math.floor(Math.random()*defSayings.length)];
+	while (targetText == currentText){
+		targetText = defSayings[Math.floor(Math.random()*defSayings.length)];
+	}
+	currentText = targetText;
+	set(element, targetText);
+}
+
 var activate = function(){
-	var currTabs = chrome.extension.getBackgroundPage().currTabs;
-	chrome.tabs.query({
-		active: true,
-		windowId: chrome.windows.WINDOW_ID_CURRENT
-	}, function (tabs){
-		result = $.grep(currTabs, function(e){
-				e.currStatus = false;
-				return e.tabId == tabs[0].id;
+	count += 1;
+	if (count >= targetPasses) {
+		var currTabs = chrome.extension.getBackgroundPage().currTabs;
+		chrome.tabs.query({
+			active: true,
+			windowId: chrome.windows.WINDOW_ID_CURRENT
+		}, function (tabs){
+			result = $.grep(currTabs, function(e){
+					e.currStatus = false;
+					return e.tabId == tabs[0].id;
+			});
+			if (result.length==0){
+				return false;
+			}
+			else{
+				var numLeft = "Verifed";
+				set(submit1, numLeft);
+				$("#message").text("Button Unlocked");
+				$("#submit1").attr("disabled", "enabled");
+				console.log(result[0]);
+				$(".btn-success").removeAttr("disabled");	
+				$(".btn-success").attr("href", result[0].origUrl);
+				return true;
+			}
 		});
-		if (result.length==0){
-			return false;
-		}
-		else{
-			$("#message").text("Button Unlocked");
-			console.log(result[0]);
-			$(".btn-success").removeAttr("disabled");	
-			$(".btn-success").attr("href", result[0].origUrl);
-			return true;
-		}
-	});
+	} else if ((targetPasses - count)==1){
+		var numLeft = "Verify";
+		set(submit1, numLeft);
+		changeText(target);
+	}
+	else{
+		var numLeft = "Verify (" + (targetPasses-count) +")";
+		set(submit1, numLeft);
+		changeText(target);
+	}
 	return false;
 }
 

@@ -4,6 +4,7 @@
     <title>MAD</title>
 		<!-- Scripts -->
 		<script src="js/shared/jquery.min.js"></script>
+		<script src="js/shared/jquery-ui.min.js"></script>
 		<script src="js/fuzzyset.js"></script>
 		<script src="js/shared/bootstrap.min.js"></script>
 		<script src="js/shared/angular.min.js"></script>
@@ -29,8 +30,9 @@
 	<body>
 			<div class="text-center content" ng-controller="HeaderController">
 				<h1>MAD: <small>Mindful Anti Distraction</small></h1>
-				<button class='btn btn-danger' ng-click='openOptions("lg")'>Block List</button>
-				<button class='btn btn-success' ng-click='openReasons("lg")'>Reason Tracker</button>
+				<button class='btn btn-danger' ng-click='openOptions("lg")'>Block List <span class="glyphicon glyphicon-th-list"></span></button>
+				<button ng-if="useReasons" class='btn btn-success' ng-click='openReasons("lg")'>Reason Tracker <span class="glyphicon glyphicon-eye-open"></span></button>
+				<button class='btn btn-primary' ng-click='openSettings()'>Options<span class="glyphicon glyphicon-cog"></span></button>
 			</div>
 
 			<div class="row content">
@@ -46,8 +48,8 @@
 						</div>
 						<div ng-hide="!editMode[$index]">
 							<a href=""><span class='glyphicon glyphicon-chevron-left' aria-hidden="true" ng-click='switchPic("left", $index)'></span></a>
-								<img ng-src="{{ alt.imgsrc }}" class="restrict-img-circle img-circle">
-								<a href=""><span class='glyphicon glyphicon-chevron-right' aria-hidden="true" ng-click='switchPic("right", $index)'></span></a>
+							<img ng-src="{{ alt.imgsrc }}" class="restrict-img-circle img-circle">
+							<a href=""><span class='glyphicon glyphicon-chevron-right' aria-hidden="true" ng-click='switchPic("right", $index)'></span></a>
 							<input class='form-control text-center nice-form-control' ng-model="alt.text" ></h3>
 						</div>
 						<button class='btn btn-xs btn-danger' ng-click='deleteAlt($index)'><span class='glyphicon glyphicon-trash' aria-hidden="true"></span></button>
@@ -130,29 +132,26 @@
 					<form class="form-horizontal">
 						<div class="form-group">
 							<label class="col-sm-2 control-label" for="input-a">Retype</label>
-							<div class="col-sm-10">
-								<input type="text" id="input-a" class="custwidth form-control"></input>
+							<div class="col-sm-9">
+								<input type="text" id="input-a" class="form-control"></input>
 							</div>
 						</div>
-						<div class="form-group">
+						<div ng-show="useReasons" class="form-group">
 							<label class="col-sm-2 control-label" for="input-b">Reason Tracking (Optional)</label>
-							<div class="col-sm-10">
-								<input type="text" id="input-b" class="custwidth form-control" ng-model="reason"></input>
+							<div class="col-sm-9">
+								<input type="text" id="input-b" class="form-control" ng-model="reason"></input>
 							</div>
 						</div>
 					</form>
 				</div>
 				<div class="text-center">
-				<input id="submit1" class="btn btn-primary" type="submit" value="Verify">
-				<a id="submit2"  class="btn btn-success" href="#" disabled="enabled" ng-click='enterSite()'>Enter Site</a>
+					<a id="submit1" class="btn btn-primary" type="submit" href="#target">Verify</a>
+					<a id="submit2"  class="btn btn-success" href="#" disabled="enabled" ng-click="enterSite($event)">Enter Site</a>
 				<br><strong id="message"></strong>
 				</div>
 
 			</div>
 		</div>
-	</div>
-	<div class="text-center">
-		<h2 class="btn btn-danger text-center">HELP IM DISTRACTED</h2>
 	</div>
   </body>
 </html>

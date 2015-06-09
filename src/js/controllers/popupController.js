@@ -19,5 +19,8 @@ popup.controller('PopupController', ['$scope',
 		$scope.testfunc = function(){
 			alert("DOES WORK>?");
 		}
+		$scope.openSettings = function(){
+			chrome.runtime.openOptionsPage();
+		}
 }]);
 

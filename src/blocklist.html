@@ -2,15 +2,7 @@
 <html ng-app="app" ng-csp>
   <head>
     <title>MAD Options</title>
-		 	<script src="js/shared/bootstrap.min.js"></script>
-		<!--	<script src="js/shared/angular.min.js"></script>
-		<script src="js/shared/ui-bootstrap-ng.min.js"></script>-->
-
-			<link rel="stylesheet" href="css/bootstrap.min.css">
-			<link rel="stylesheet" href="css/bootstrap-theme.min.css">
-			<link rel="stylesheet" href="css/main.css">
-			<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-  </head>
+	</head>
   <body>
 		<div class='modal-header text-center'>
 			<h1> BlockList </h1>
@@ -35,21 +27,25 @@
 					<h3>ASSIST FUTURE SELF</h3>
 					<div class='row'>
 						<h4>Simple Block</h4>
-						<div class='col-md-10'>
-							<input id="simpleDomain" ng-model="simple" type='text' class='form-control' placeholder='e.g. reddit or twitter'/> 
-						</div>
-						<div class='col-md-2 modal-right-button'>
-							<button class='btn btn-success btn-sm' ng-click='addSimple()'>Add</button>
-						</div>
+						<form ng-submit="addSimple()">
+							<div class='col-md-10'>
+								<input id="simpleDomain" ng-model="simple" type='text' class='form-control' placeholder='e.g. reddit or twitter'/> 
+							</div>
+							<div class='col-md-2 modal-right-button'>
+								<button class='btn btn-success btn-sm'>Add</button>
+							</div>
+						</form>
 					</div>
 					<div class='row'>
 						<h4>Exactsies Block</h4>
+						<form ng-submit="addExact()">
 							<div class='col-md-10'>
 								<input id="exactUrl" ng-model="exact" type='text' class='form-control' placeholder='e.g. http://www.reddit.com/r/all'/> 
 							</div>
 							<div class='col-md-2 modal-right-button'>
-								<button class='btn btn-success btn-sm' ng-click='addExact()'>Add</button>
+								<button class='btn btn-success btn-sm'>Add</button>
 							</div>
+						</form>
 					</div>
 				<!--	<div class='row'>
 						<h4>Custom Regex</h4>

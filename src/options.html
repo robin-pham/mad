@@ -1,0 +1,48 @@
+<!doctype html>
+<html ng-app='settings' ng-csp>
+	<head>
+		<title>MAD Options</title>
+		<!-- CSS -->
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/bootstrap-theme.min.css">
+		<link rel="stylesheet" href="css/main.css">
+		<link rel="stylesheet" href="css/angular-csp.css">
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
+		<!-- Scripts -->
+		<script src="js/shared/jquery.min.js"></script>
+		<script src="js/shared/bootstrap.min.js"></script>
+		<script src="js/shared/angular.min.js"></script>
+
+		<!-- Module -->
+		<script src="js/settings.js"></script>
+		<script src="js/controllers/settingsController.js"></script>
+
+	</head>
+	<body ng-controller="SettingsController">
+		<div class="text-center content">
+			<h1>Options<h1>
+		</div>
+		<div id="settings-container">
+			<h3>General</h3>
+			<div class="row container panel-body">
+				<div class="col-md-2">
+					<div class="btn-group">
+						<select id="numVerif" class="form-control" ng-model="currentSettings['numOfPasses']" ng-options="number for number in numberList" ng-change="settingChanged()">
+						</select>
+					</div>
+				</div>
+				<div class="col-md-10"> <label for="numVerif"> <h4>Number of phrases to type in order to unlock page</h4><label></div>
+			</div>
+			<div class="row container panel-body">
+				<div class="col-md-2">
+					<div class="btn-group">
+						<select class="form-control" ng-model="currentSettings['useReasonList']" ng-options="option for option in yesNo" ng-change="settingChanged()">
+						</select>
+					</div>
+
+				</div>
+					<div class="col-md-7"> <h4> Show Reasons Feature</h4></div>
+			</div>
+	</body>
+</html>

@@ -1,8 +1,38 @@
 
-var currTabs = []; //TODO add additional information to these objects, e.g. time 
+var currTabs = []; 
 var updateInterval = 5;
 var cumulativeTime = 0;
 var totalTime = 0;
+var settings = {};
+
+var defaultSettings = {
+	"numOfPasses": 1,
+	"useReasonList": true
+};
+
+var updateSettings = function(){
+	chrome.storage.sync.get('settings', function(items){
+		if (items.settings == undefined){
+			settings = defaultSettings;
+		} else {
+			settings = items.settings;
+		}
+		console.log(settings);
+	});
+};
+updateSettings();
+
+var saveSettings = function(){
+	chrome.storage.sync.set({'settings': settings}, function(){
+		console.log('settings saved');
+	});
+};
+
+var deleteSettings = function(){
+	chrome.storage.sync.remove('settings', function(){
+		console.log('settings deleted');
+	});
+};
 
 function updateTimes(){
 	chrome.idle.queryState(60, function (state){
@@ -38,4 +68,4 @@ chrome.webRequest.onBeforeRequest.addListener(
 		["blocking"]
 );
 
-setInterval(updateTimes, updateInterval * 1000);
+//setInterval(updateTimes, updateInterval * 1000);

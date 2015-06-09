@@ -1,15 +1,15 @@
 {
   "name": "Mindful-Anti-Distraction",
   "version": "0.3.0",
-	"description": "Chrome extension to help curtail poor internet habits",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/qt31415926/mad"
-	},
-	"private": true,
+  "description": "Chrome extension to help curtail poor internet habits",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/qt31415926/mad"
+  },
+  "private": true,
   "devDependencies": {
     "grunt": "^0.4.5",
     "grunt-contrib-compress": "^0.13.0",
-    "grunt-crx": "^0.3.4",
+    "grunt-crx": "^1.0.3"
   }
 }
