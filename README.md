@@ -52,6 +52,11 @@ v0.2.1.0 12/04/2015
 
 v0.2.1.1 14/04/2015
 - Bug fixing day! I'm beginning to think I should stagger-schedule the implementation of new features vs bug fixing.
-- Man do I love bug fixing (serious: I'm hella good at it and it feels great when I squash em)
+- Man do I love bug fixing, seriously I'm hella good at it.
 - Major bugs: Fixed alternate ways of trying to bypass the typing challenge. Fixed blocking of embedded requests. Poor fix, but a fix of teh facebook redirection links. 
 - Still wanting to explore developmental tools and TDD. Grunt or something to build everything would be nice. apparently chjrome extensions are auto minified?
+
+v.0.3.0 08/06/2015
+- Added a few features, reason tracking and options to increase amount of phrases to get passed
+- Decided against implementing notifications for now. Difficult to determine false negatives.
+- Focused more on prevention methods. Reason tracking allows for immediate self evaluation. Gave an option to increase number of phrases to type. Delayed gratification works.
