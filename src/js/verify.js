@@ -37,15 +37,17 @@ window.onload = function setupUpdater(){
  else set(submit1, numLeft);
 
 
- function handleChange(){
-	var a = FuzzySet([currentText])
+function handleChange(){
+  var a = FuzzySet([currentText])
   var newText=input.value;
-	var score = a.get(newText)[0][0];
+  var score = a.get(newText)[0][0];
   if (score>0.88) {
-		passed = true;
-		return;
-	} else if (score> 0.1){
-	}
+    passed = true;
+    return;
+  } 
+  else  {
+    passed = false;
+  }
  }
  
  function eventHandler(){
