@@ -17,7 +17,8 @@ var defSayings = [
 	"Mindless rote behaviour is changeable",
 	"Refocus on what needs to be done",
 	"I should strive to help out my future self",
-	"What was the cue that led me here?"
+	"What was the cue that led me here?",
+	"I have a valid reason for using this website"
 	]
 
 /* setupUpdater will be called once, on page load.
@@ -114,6 +115,7 @@ $(function(){
 	$(".btn-primary").click(function(){
 		if (passed) {
 			activate();
+			passed = false;
 		} else {
             $("#message").text("Some typos are allowed, but not that many!");
         }
@@ -126,6 +128,7 @@ $(function(){
 		if (e.keyCode == 13){
 			if (passed) {
 				activate();
+				passed = false;
 			} else {
                 $("#message").text("Some typos are allowed, but not that many!");
             }
