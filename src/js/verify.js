@@ -10,7 +10,7 @@ var defSayings = [
 	"I am aware of my main goals for the day",
 	"Sites are only tools. They don't control me",
 	"Resisting this site is easy",
-	"I believe in ability to manage myself",
+	"I believe in my ability to manage myself",
 	"My future self can benefit from this",
 	"I will fight my automatic actions",
 	"Conserve willpower through smart choices",

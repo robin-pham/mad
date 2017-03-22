@@ -1,9 +1,9 @@
 {
   "manifest_version": 2,
   "name": "MAD - Mindful Anti Distraction",
-  "short_name": "MAD BETA",
+  "short_name": "MAD",
   "description": "This extension will hopefully help you be less distracted",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "background": {
     "scripts": [
       "js/shared/jquery.min.js",
